@@ -1,22 +1,9 @@
-<Window ...>
-    <TabControl>
-        <TabItem Header="Recherche">
-            <StackPanel Margin="20">
-                <TextBox Name="CityInput" Watermark="Entrez une ville..."/>
-                <Button Content="Rechercher" Click="OnSearchClick"/>
-                </StackPanel>
-        </TabItem>
-
-        <TabItem Header="Prévisions">
-            <TextBlock Text="Prévisions sur 5 jours à venir" />
-        </TabItem>
-
-        <TabItem Header="Paramètres">
-            <StackPanel Margin="20">
-                <TextBlock Text="Ville par défaut :"/>
-                <TextBox Name="DefaultCityInput"/>
-                <Button Content="Sauvegarder"/>
-            </StackPanel>
-        </TabItem>
-    </TabControl>
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MétéoWither.MainWindow"
+        Title="MétéoWither">
+    Welcome to Avalonia!
 </Window>
