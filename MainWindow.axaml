@@ -1,0 +1,22 @@
+<Window ...>
+    <TabControl>
+        <TabItem Header="Recherche">
+            <StackPanel Margin="20">
+                <TextBox Name="CityInput" Watermark="Entrez une ville..."/>
+                <Button Content="Rechercher" Click="OnSearchClick"/>
+                </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Prévisions">
+            <TextBlock Text="Prévisions sur 5 jours à venir" />
+        </TabItem>
+
+        <TabItem Header="Paramètres">
+            <StackPanel Margin="20">
+                <TextBlock Text="Ville par défaut :"/>
+                <TextBox Name="DefaultCityInput"/>
+                <Button Content="Sauvegarder"/>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</Window>
