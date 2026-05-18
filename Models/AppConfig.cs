@@ -1,5 +1,6 @@
-namespace WeatherApp.Models {
-    public class AppConfig {
-        public string ApiKey { get; set; }
-    }
+namespace MétéoWither.Models;
+
+public class AppConfig
+{
+    public string ApiKey { get; set; } = string.Empty;
 }
