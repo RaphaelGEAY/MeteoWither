@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
 using MétéoWither.Models;
+using Newtonsoft.Json;
 
 namespace MétéoWither.Services;
 
 public class WeatherService
 {
-    private static readonly HttpClient HttpClient = new();
-    private static readonly JsonSerializerOptions JsonOptions = new()
+    private static readonly HttpClient HttpClient = new()
     {
-        PropertyNameCaseInsensitive = true
+        Timeout = TimeSpan.FromSeconds(12)
     };
 
     private readonly string _apiKey;
@@ -32,12 +31,11 @@ public class WeatherService
         return await DeserializeResponseAsync<WeatherResponse>(response, "Ville introuvable.");
     }
 
-    public async Task<List<ForecastItem>> GetForecastAsync(string city, string language)
+    public async Task<ForecastResponse> GetForecastAsync(string city, string language)
     {
         var url = BuildUrl("forecast", city, language);
         using var response = await HttpClient.GetAsync(url);
-        var forecast = await DeserializeResponseAsync<ForecastResponse>(response, "Ville introuvable.");
-        return forecast.List;
+        return await DeserializeResponseAsync<ForecastResponse>(response, "Ville introuvable.");
     }
 
     public async Task<Bitmap?> GetWeatherIconAsync(string? iconCode)
@@ -72,10 +70,15 @@ public class WeatherService
             throw new InvalidOperationException(notFoundMessage);
         }
 
+        if (response.StatusCode is HttpStatusCode.Unauthorized or HttpStatusCode.Forbidden)
+        {
+            throw new InvalidOperationException("La clé API OpenWeatherMap est absente, invalide ou pas encore activée.");
+        }
+
         response.EnsureSuccessStatusCode();
 
         var json = await response.Content.ReadAsStringAsync();
-        var result = JsonSerializer.Deserialize<T>(json, JsonOptions);
+        var result = JsonConvert.DeserializeObject<T>(json);
 
         if (result is null)
         {

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace MétéoWither.Models;
 
@@ -17,6 +17,8 @@ public class WeatherResponse
 public class ForecastResponse
 {
     public List<ForecastItem> List { get; set; } = [];
+
+    public ForecastCity City { get; set; } = new();
 }
 
 public class ForecastItem
@@ -25,8 +27,15 @@ public class ForecastItem
 
     public List<WeatherCondition> Weather { get; set; } = [];
 
-    [JsonPropertyName("dt_txt")]
+    [JsonProperty("dt_txt")]
     public string DateText { get; set; } = string.Empty;
+}
+
+public class ForecastCity
+{
+    public string Name { get; set; } = string.Empty;
+
+    public Coord Coord { get; set; } = new();
 }
 
 public class Coord

@@ -1,0 +1,58 @@
+MétéoWither - Explication du fonctionnement
+
+L'application est une interface Avalonia découpée en trois onglets : Recherche, Prévisions et Paramètres.
+
+1. Onglet Recherche
+L'utilisateur saisit une ville puis clique sur Rechercher, ou appuie sur Entrée.
+L'application appelle l'endpoint OpenWeatherMap /weather avec les paramètres suivants :
+- q : nom de la ville
+- appid : clé API lue dans config.json
+- units=metric : températures en degrés Celsius
+- lang : langue choisie dans les paramètres
+
+La réponse permet d'afficher le nom de la ville, la latitude, la longitude, la température, la description du temps, l'humidité et l'image météo correspondant au code d'icône OpenWeatherMap.
+
+2. Onglet Prévisions
+L'utilisateur saisit une ville puis clique sur Charger 5 jours, ou appuie sur Entrée.
+L'application appelle l'endpoint OpenWeatherMap /forecast.
+La liste reçue contient des prévisions par tranches horaires. Le code sélectionne uniquement les entrées dont l'heure est 12:00:00, les trie par date et affiche les 5 premières journées disponibles.
+
+Chaque carte de prévision affiche la date et l'heure, le nom de la ville, les coordonnées, la température, la description, l'humidité et l'icône météo.
+
+3. Onglet Paramètres
+L'utilisateur peut enregistrer :
+- une ville par défaut ;
+- la langue des requêtes météo.
+
+Ces options sont sauvegardées dans options.json. Si ce fichier n'existe pas au lancement, l'application le crée automatiquement.
+Au démarrage, la ville par défaut est remise dans les champs de recherche. Si une clé API est disponible, la météo et les prévisions de cette ville sont aussi chargées automatiquement.
+
+4. Fichiers de configuration
+config.json contient la clé API OpenWeatherMap :
+{
+  "ApiKey": "VOTRE_CLE_API_OPENWEATHERMAP"
+}
+
+options.json contient les préférences locales :
+{
+  "DefaultCity": "Paris",
+  "Language": "fr"
+}
+
+Ces deux fichiers sont ignorés par Git grâce au fichier .gitignore.
+
+5. Gestion des erreurs
+L'application affiche un message clair si :
+- la ville n'existe pas ;
+- la clé API est absente, invalide ou pas encore activée ;
+- la connexion internet est indisponible ;
+- la requête vers OpenWeatherMap dépasse le délai prévu ;
+- la réponse météo reçue est invalide.
+
+6. Structure du code
+MainWindow.axaml contient l'interface graphique.
+MainWindow.axaml.cs gère les clics, les recherches, les états de chargement et l'affichage des résultats.
+Services/WeatherService.cs centralise les appels HTTP vers OpenWeatherMap.
+Services/AppStorageService.cs lit et écrit config.json et options.json.
+Models/WeatherResponse.cs décrit les données météo reçues depuis l'API.
+Models/AppConfig.cs et Models/AppOptions.cs décrivent les fichiers de configuration locaux.

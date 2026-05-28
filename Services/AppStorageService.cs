@@ -1,24 +1,18 @@
 using System;
 using System.IO;
-using System.Text.Json;
 using System.Threading.Tasks;
 using MétéoWither.Models;
+using Newtonsoft.Json;
 
 namespace MétéoWither.Services;
 
 public static class AppStorageService
 {
-    private static readonly JsonSerializerOptions JsonOptions = new()
-    {
-        WriteIndented = true,
-        PropertyNameCaseInsensitive = true
-    };
-
     private static string BasePath => AppContext.BaseDirectory;
 
-    private static string ConfigPath => Path.Combine(BasePath, "config.json");
+    public static string ConfigPath => Path.Combine(BasePath, "config.json");
 
-    private static string OptionsPath => Path.Combine(BasePath, "options.json");
+    public static string OptionsPath => Path.Combine(BasePath, "options.json");
 
     public static async Task<AppConfig?> LoadConfigAsync()
     {
@@ -30,7 +24,7 @@ public static class AppStorageService
         try
         {
             var content = await File.ReadAllTextAsync(ConfigPath);
-            return JsonSerializer.Deserialize<AppConfig>(content, JsonOptions);
+            return JsonConvert.DeserializeObject<AppConfig>(content);
         }
         catch
         {
@@ -50,7 +44,7 @@ public static class AppStorageService
         try
         {
             var content = await File.ReadAllTextAsync(OptionsPath);
-            var options = JsonSerializer.Deserialize<AppOptions>(content, JsonOptions);
+            var options = JsonConvert.DeserializeObject<AppOptions>(content);
 
             if (options is null)
             {
@@ -69,7 +63,7 @@ public static class AppStorageService
 
     public static Task SaveOptionsAsync(AppOptions options)
     {
-        var json = JsonSerializer.Serialize(options, JsonOptions);
+        var json = JsonConvert.SerializeObject(options, Formatting.Indented);
         return File.WriteAllTextAsync(OptionsPath, json);
     }
 }
