@@ -138,7 +138,6 @@ public partial class MainWindow : Window
     {
         _options.DefaultCity = DefaultCityTextBox.Text?.Trim() ?? string.Empty;
         _options.Language = GetSelectedLanguageCode();
-        SaveOptionsButton.IsEnabled = false;
 
         try
         {
@@ -153,10 +152,6 @@ public partial class MainWindow : Window
         catch
         {
             SetStatus(SettingsStatusTextBlock, "Impossible d'enregistrer options.json.", true);
-        }
-        finally
-        {
-            SaveOptionsButton.IsEnabled = true;
         }
     }
 
