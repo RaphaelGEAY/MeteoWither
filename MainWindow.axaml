@@ -10,51 +10,60 @@
         MinWidth="960"
         MinHeight="640"
         x:Class="MétéoWither.MainWindow"
-        Background="#EEF7F8"
+        Background="#E3EFF2"
         Title="MétéoWither">
     <Window.Styles>
         <Style Selector="TextBox">
             <Setter Property="MinHeight" Value="42" />
             <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="#102A33" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#8FB0BA" />
         </Style>
         <Style Selector="Button">
             <Setter Property="MinHeight" Value="42" />
             <Setter Property="Padding" Value="18,8" />
             <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="Background" Value="#0F6B78" />
+            <Setter Property="BorderBrush" Value="#0A5560" />
         </Style>
         <Style Selector="ComboBox">
             <Setter Property="MinHeight" Value="42" />
             <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="#102A33" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#8FB0BA" />
         </Style>
     </Window.Styles>
 
     <Grid RowDefinitions="Auto,*" Margin="26" RowSpacing="18">
         <Border Padding="24,20"
                 CornerRadius="22"
-                Background="#FCFEFF"
-                BorderBrush="#D3E5EA"
+                Background="#FFFFFF"
+                BorderBrush="#AFC8D1"
                 BorderThickness="1">
             <Grid ColumnDefinitions="*,Auto" ColumnSpacing="18">
                 <StackPanel Spacing="5">
                     <TextBlock Text="MétéoWither"
                                FontSize="34"
                                FontWeight="SemiBold"
-                               Foreground="#17333B" />
+                               Foreground="#102A33" />
                     <TextBlock Text="Recherche météo, prévisions à 12:00 et préférences enregistrées."
                                FontSize="15"
-                               Foreground="#52676E" />
+                               Foreground="#2D4A53" />
                 </StackPanel>
 
                 <Border Grid.Column="1"
                         Padding="16,10"
                         CornerRadius="16"
-                        Background="#E6F2EC"
-                        BorderBrush="#BFD8CB"
+                        Background="#D9EFE2"
+                        BorderBrush="#8DBA9D"
                         BorderThickness="1"
                         VerticalAlignment="Center">
                     <TextBlock x:Name="HeaderSummaryTextBlock"
                                Text="Initialisation..."
-                               Foreground="#27483A"
+                               Foreground="#1E3A2E"
                                FontWeight="SemiBold" />
                 </Border>
             </Grid>
@@ -77,7 +86,7 @@
                         <Grid Grid.Row="1" RowDefinitions="Auto,Auto" RowSpacing="8">
                             <TextBlock x:Name="SearchStatusTextBlock"
                                        TextWrapping="Wrap"
-                                       Foreground="#52676E" />
+                                       Foreground="#2D4A53" />
                             <ProgressBar x:Name="SearchProgressBar"
                                          Grid.Row="1"
                                          Height="4"
@@ -89,14 +98,14 @@
                                 Padding="24"
                                 CornerRadius="22"
                                 BorderThickness="1"
-                                BorderBrush="#D3E5EA"
-                                Background="#FCFEFF">
+                                BorderBrush="#AFC8D1"
+                                Background="#FFFFFF">
                             <Grid ColumnDefinitions="180,*" ColumnSpacing="26">
                                 <Border Width="180"
                                         Height="180"
                                         CornerRadius="26"
-                                        Background="#E4F0FF"
-                                        BorderBrush="#C7DDF8"
+                                        Background="#DDEBFF"
+                                        BorderBrush="#9FBDE4"
                                         BorderThickness="1">
                                     <Image x:Name="CurrentWeatherImage"
                                            Margin="22"
@@ -108,31 +117,31 @@
                                                Text="Aucune recherche"
                                                FontSize="31"
                                                FontWeight="SemiBold"
-                                               Foreground="#17333B"
+                                               Foreground="#102A33"
                                                TextWrapping="Wrap" />
                                     <TextBlock x:Name="CoordinatesTextBlock"
                                                Text="Latitude / Longitude : -"
                                                FontSize="15"
-                                               Foreground="#52676E" />
+                                               Foreground="#2D4A53" />
 
                                     <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="18" RowSpacing="8">
                                         <TextBlock x:Name="TemperatureTextBlock"
                                                    Text="Température : -"
                                                    FontSize="19"
                                                    FontWeight="SemiBold"
-                                                   Foreground="#0F5E72" />
+                                                   Foreground="#0A5667" />
                                         <TextBlock x:Name="HumidityTextBlock"
                                                    Grid.Column="1"
                                                    Text="Humidité : -"
                                                    FontSize="19"
                                                    FontWeight="SemiBold"
-                                                   Foreground="#526A35" />
+                                                   Foreground="#3E5C25" />
                                         <TextBlock x:Name="DescriptionTextBlock"
                                                    Grid.Row="1"
                                                    Grid.ColumnSpan="2"
                                                    Text="Description : -"
                                                    FontSize="17"
-                                                   Foreground="#31484F"
+                                                   Foreground="#1F3A43"
                                                    TextWrapping="Wrap" />
                                     </Grid>
                                 </StackPanel>
@@ -158,7 +167,7 @@
                         <Grid Grid.Row="1" RowDefinitions="Auto,Auto" RowSpacing="8">
                             <TextBlock x:Name="ForecastStatusTextBlock"
                                        TextWrapping="Wrap"
-                                       Foreground="#52676E" />
+                                       Foreground="#2D4A53" />
                             <ProgressBar x:Name="ForecastProgressBar"
                                          Grid.Row="1"
                                          Height="4"
@@ -171,7 +180,7 @@
                                    Text="Les prévisions apparaîtront ici."
                                    FontSize="17"
                                    FontWeight="SemiBold"
-                                   Foreground="#17333B" />
+                                   Foreground="#102A33" />
 
                         <Grid x:Name="ForecastCardsGrid"
                               Grid.Row="3"
@@ -187,18 +196,18 @@
                         <Border Padding="24"
                                 CornerRadius="22"
                                 BorderThickness="1"
-                                BorderBrush="#D3E5EA"
-                                Background="#FCFEFF">
+                                BorderBrush="#AFC8D1"
+                                Background="#FFFFFF">
                             <StackPanel Spacing="16">
                                 <TextBlock Text="Ville par défaut"
                                            FontWeight="SemiBold"
-                                           Foreground="#17333B" />
+                                           Foreground="#102A33" />
                                 <TextBox x:Name="DefaultCityTextBox"
                                          PlaceholderText="Ville remplie au démarrage" />
 
                                 <TextBlock Text="Langue des requêtes"
                                            FontWeight="SemiBold"
-                                           Foreground="#17333B" />
+                                           Foreground="#102A33" />
                                 <ComboBox x:Name="LanguageComboBox"
                                           SelectedIndex="0"
                                           MaxDropDownHeight="260">
@@ -219,7 +228,7 @@
 
                                 <TextBlock x:Name="SettingsStatusTextBlock"
                                            TextWrapping="Wrap"
-                                           Foreground="#52676E" />
+                                           Foreground="#2D4A53" />
                             </StackPanel>
                         </Border>
 
@@ -227,23 +236,23 @@
                                 Padding="24"
                                 CornerRadius="22"
                                 BorderThickness="1"
-                                BorderBrush="#D3E5EA"
-                                Background="#F9FCF8">
+                                BorderBrush="#AFC8D1"
+                                Background="#F5FBF4">
                             <StackPanel Spacing="12">
                                 <TextBlock Text="État de l'application"
                                            FontSize="20"
                                            FontWeight="SemiBold"
-                                           Foreground="#17333B" />
+                                           Foreground="#102A33" />
                                 <TextBlock x:Name="ApiKeyStatusTextBlock"
                                            Text="Clé API : vérification..."
                                            TextWrapping="Wrap"
-                                           Foreground="#52676E" />
+                                           Foreground="#2D4A53" />
                                 <TextBlock x:Name="OptionsPathTextBlock"
                                            TextWrapping="Wrap"
-                                           Foreground="#52676E" />
+                                           Foreground="#2D4A53" />
                                 <TextBlock x:Name="ConfigPathTextBlock"
                                            TextWrapping="Wrap"
-                                           Foreground="#52676E" />
+                                           Foreground="#2D4A53" />
                             </StackPanel>
                         </Border>
                     </Grid>

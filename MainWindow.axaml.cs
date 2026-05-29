@@ -328,14 +328,14 @@ public partial class MainWindow : Window
             Padding = new Thickness(20),
             CornerRadius = new CornerRadius(22),
             BorderThickness = new Thickness(1),
-            BorderBrush = Solid("#D3E5EA"),
-            Background = Solid("#FCFEFF"),
+            BorderBrush = Solid("#AFC8D1"),
+            Background = Solid("#FFFFFF"),
             Child = new TextBlock
             {
                 Text = message,
                 TextWrapping = TextWrapping.Wrap,
                 VerticalAlignment = VerticalAlignment.Center,
-                Foreground = Solid("#52676E")
+                Foreground = Solid("#2D4A53")
             }
         };
 
@@ -369,8 +369,8 @@ public partial class MainWindow : Window
                 Padding = new Thickness(16),
                 CornerRadius = new CornerRadius(20),
                 BorderThickness = new Thickness(1),
-                BorderBrush = Solid("#D3E5EA"),
-                Background = Solid(index % 2 == 0 ? "#FCFEFF" : "#F9FCF8"),
+                BorderBrush = Solid("#AFC8D1"),
+                Background = Solid(index % 2 == 0 ? "#FFFFFF" : "#F5FBF4"),
                 Child = new StackPanel
                 {
                     Spacing = 8,
@@ -381,13 +381,13 @@ public partial class MainWindow : Window
                             Text = date?.ToString("dddd dd/MM HH:mm", culture) ?? item.DateText,
                             FontWeight = FontWeight.SemiBold,
                             FontSize = 16,
-                            Foreground = Solid("#17333B"),
+                            Foreground = Solid("#102A33"),
                             TextWrapping = TextWrapping.Wrap
                         },
                         new TextBlock
                         {
                             Text = cityName,
-                            Foreground = Solid("#52676E"),
+                            Foreground = Solid("#2D4A53"),
                             TextWrapping = TextWrapping.Wrap
                         },
                         new Border
@@ -395,8 +395,8 @@ public partial class MainWindow : Window
                             Width = 86,
                             Height = 86,
                             CornerRadius = new CornerRadius(18),
-                            Background = Solid("#E4F0FF"),
-                            BorderBrush = Solid("#C7DDF8"),
+                            Background = Solid("#DDEBFF"),
+                            BorderBrush = Solid("#9FBDE4"),
                             BorderThickness = new Thickness(1),
                             Child = new Image
                             {
@@ -408,26 +408,26 @@ public partial class MainWindow : Window
                         new TextBlock
                         {
                             Text = $"Latitude / Longitude : {coordinates}",
-                            Foreground = Solid("#52676E"),
+                            Foreground = Solid("#2D4A53"),
                             TextWrapping = TextWrapping.Wrap
                         },
                         new TextBlock
                         {
                             Text = $"Température : {item.Main.Temp:0.#} °C",
                             FontWeight = FontWeight.SemiBold,
-                            Foreground = Solid("#0F5E72")
+                            Foreground = Solid("#0A5667")
                         },
                         new TextBlock
                         {
                             Text = $"Description : {Capitalize(description)}",
-                            Foreground = Solid("#31484F"),
+                            Foreground = Solid("#1F3A43"),
                             TextWrapping = TextWrapping.Wrap
                         },
                         new TextBlock
                         {
                             Text = $"Humidité : {item.Main.Humidity}%",
                             FontWeight = FontWeight.SemiBold,
-                            Foreground = Solid("#526A35")
+                            Foreground = Solid("#3E5C25")
                         }
                     }
                 }
@@ -485,7 +485,7 @@ public partial class MainWindow : Window
     private static void SetStatus(TextBlock target, string message, bool isError)
     {
         target.Text = message;
-        target.Foreground = isError ? Solid("#B94747") : Solid("#2F714F");
+        target.Foreground = isError ? Solid("#9F2E2E") : Solid("#1F6B45");
     }
 
     private void UpdateHeaderSummary()
